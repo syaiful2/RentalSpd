@@ -69,6 +69,7 @@ public class ListdataActivity extends AppCompatActivity implements SwipeRefreshL
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 Log.i("jsonobject", "onResponse: " + jsonObject);
                                 model item = new model();
+
                                 item.setId(jsonObject.optString("id"));
                                 item.setRole_user(jsonObject.optString("roleuser"));
                                 item.setEmail(jsonObject.optString("email"));

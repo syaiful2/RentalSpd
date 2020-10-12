@@ -2,15 +2,19 @@ package com.example.rentalspd;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 
@@ -18,20 +22,32 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class RegisterActivity extends AppCompatActivity {
-    private EditText etemail;
-    private EditText etpassword;
-    private EditText etnama;
+     EditText etemail;
+     EditText etpassword;
+     EditText etnama ;
+     TextView txtlogin;
 
-    private EditText etnohp;
-    private EditText etalamat;
-    private EditText etnoktp;
+     EditText etnohp;
+     EditText etalamat;
+     EditText etnoktp;
+
+    ProgressDialog progressDialog;
+     SharedPreferences sharedPreferences;
 
     private Button btn_regis;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        sharedPreferences = getSharedPreferences("login",MODE_PRIVATE);
+
+//        progressDialog = new ProgressDialog(this);
+
+
         etemail = findViewById(R.id.email);
+        txtlogin = findViewById(R.id.textlogin);
         etpassword = findViewById(R.id.password);
         etnama = findViewById(R.id.nama);
         etnohp = findViewById(R.id.nohp);
@@ -39,6 +55,8 @@ public class RegisterActivity extends AppCompatActivity {
         etnoktp = findViewById(R.id.noktp);
 
         btn_regis = findViewById(R.id.btn_register);
+
+
         btn_regis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,30 +68,31 @@ public class RegisterActivity extends AppCompatActivity {
                 String noktp = etnoktp.getText().toString();
 
                 if (email.isEmpty()){
-                    Toast.makeText(RegisterActivity.this, "ini tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Email tidak boleh kosong", Toast.LENGTH_SHORT).show();
 
                 }
                 if (password.isEmpty()){
-                    Toast.makeText(RegisterActivity.this, "ini tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Password tidak boleh kosong", Toast.LENGTH_SHORT).show();
 
                 }
                 if (nama.isEmpty()){
-                    Toast.makeText(RegisterActivity.this, "ini tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Nama tidak boleh kosong", Toast.LENGTH_SHORT).show();
 
                 }
                 if (nohp.isEmpty()){
-                    Toast.makeText(RegisterActivity.this, "ini tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Nohp tidak boleh kosong", Toast.LENGTH_SHORT).show();
 
                 }
                 if (alamat.isEmpty()){
-                    Toast.makeText(RegisterActivity.this, "ini tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Alamat tidak boleh kosong", Toast.LENGTH_SHORT).show();
 
                 }
                 if (noktp.isEmpty()){
-                    Toast.makeText(RegisterActivity.this, "ini tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Noktp tidak boleh kosong", Toast.LENGTH_SHORT).show();
 
                 }
-
+//                progressDialog.setTitle("Register In...");
+//                progressDialog.show();
                 AndroidNetworking.post(BaseURL.url+"register.php")
                         .addBodyParameter("email",email)
                         .addBodyParameter("password",password)
@@ -81,41 +100,51 @@ public class RegisterActivity extends AppCompatActivity {
                         .addBodyParameter("nohp",nohp)
                         .addBodyParameter("alamat",alamat)
                         .addBodyParameter("noktp",noktp)
+                        .setPriority(Priority.LOW)
                         .build()
                         .getAsJSONObject(new JSONObjectRequestListener() {
                             @Override
                             public void onResponse(JSONObject response) {
+                                Log.d("hasil", "onResponse: ");
                                 try {
                                     JSONObject hasil = response.getJSONObject("hasil");
-                                    boolean sukses = hasil.getBoolean("respon");
-                                    if (sukses){
-                                        Log.d("0", "onResponse: "+sukses);
-                                        Intent i = new Intent(RegisterActivity.this,ListdataActivity.class);
-                                        startActivity(i);
-                                        Toast.makeText(RegisterActivity.this, "Register Suskses", Toast.LENGTH_SHORT).show();
+                                    boolean respon = hasil.getBoolean("respon");
+                                    Log.d("STATUS", "onResponse: " + hasil);
+                                    if (respon) {
+                                        sharedPreferences.edit().putString("logged","customer").apply();
+                                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                        startActivity(intent);
+                                        finish();
+//                                        progressDialog.dismiss();
                                     } else {
-                                        Toast.makeText(RegisterActivity.this, "Register Gagal", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(RegisterActivity.this, "gagal", Toast.LENGTH_SHORT).show();
+//                                        progressDialog.dismiss();
                                     }
-                                }catch (JSONException e){
+                                } catch (JSONException e) {
                                     e.printStackTrace();
-                                    System.out.println("pppp" + e.getMessage());
-                                    Toast.makeText(RegisterActivity.this, "Register Gagal", Toast.LENGTH_SHORT).show();
                                 }
-
                             }
+
 
                             @Override
                             public void onError(ANError anError) {
-                                System.out.println("ttttt" + anError);
-                                System.out.println("ttttt" + anError.getErrorBody());
-                                System.out.println("ttttt" + anError.getErrorDetail());
-                                System.out.println("ttttt" + anError.getResponse());
-                                System.out.println("ttttt" + anError.getErrorCode());
+//                                progressDialog.dismiss();
+                                Log.d("TAG", "onError: " + anError.getErrorDetail());
+                                Log.d("TAG", "onError: " + anError.getErrorBody());
+                                Log.d("TAG", "onError: " + anError.getErrorCode());
+                                Log.d("TAG", "onError: " + anError.getResponse());
 
                                 Toast.makeText(RegisterActivity.this, "Register Gagal", Toast.LENGTH_SHORT).show();
 
                             }
                         });
+            }
+        });
+        txtlogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(RegisterActivity.this,LoginActivity.class);
+                startActivity(i);
             }
         });
     }
