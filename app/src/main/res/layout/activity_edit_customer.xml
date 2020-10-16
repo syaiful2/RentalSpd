@@ -20,7 +20,9 @@
         android:layout_gravity="center"
         android:inputType="textEmailAddress"
         android:id="@+id/edemail"
+        android:background="@drawable/btnbackground"
         android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:hint="Email"
@@ -32,9 +34,10 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:hint="Nama"
+        android:background="@drawable/btnbackground"
         android:id="@+id/ednama"
         android:padding="15dp"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="20dp"/>
 
     <EditText
         android:layout_gravity="center"
@@ -42,10 +45,11 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:hint="No Hp"
+        android:background="@drawable/btnbackground"
         android:inputType="number"
         android:id="@+id/ednohp"
         android:padding="15dp"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="20dp"/>
 
     <EditText
         android:layout_gravity="center"
@@ -53,9 +57,10 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:hint="Alamat"
+        android:background="@drawable/btnbackground"
         android:id="@+id/edalamat"
         android:padding="15dp"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="20dp"/>
 
     <EditText
         android:layout_gravity="center"
@@ -63,10 +68,11 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:hint="No Ktp"
+        android:background= "@drawable/btnbackground"
         android:inputType="number"
         android:id="@+id/ednoktp"
         android:padding="15dp"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="20dp"/>
 
     <Button
         android:layout_gravity="center"
@@ -74,7 +80,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:textColorHint="#000"
+        android:textColorHint="#fff"
+        android:background="@drawable/btnlog"
         android:layout_marginHorizontal="20dp"
         android:hint="EDIT CUSTOMER"/>
 

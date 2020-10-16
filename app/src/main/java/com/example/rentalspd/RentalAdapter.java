@@ -18,7 +18,6 @@ import javax.security.auth.callback.Callback;
 public class RentalAdapter extends RecyclerView.Adapter<RentalAdapter.RentalViewHolder> {
 
     private ArrayList<model> datalist;
-    private Callback callback;
 
     public RentalAdapter(ArrayList<model>datalist){
         this.datalist = datalist;

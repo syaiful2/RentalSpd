@@ -22,14 +22,13 @@ import java.util.HashMap;
 
 public class EditCustomer extends AppCompatActivity {
 
-    private EditText textemail;
-    private EditText txtnama;
-    private EditText txtnohp;
-    private EditText txtalamat;
-    private EditText txtnoktp;
-    private Button btnedit;
+     EditText textemail;
+     EditText txtnama;
+     EditText txtnohp;
+     EditText txtalamat;
+     EditText txtnoktp;
+     Button btnedit;
 
-    private String U_ID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
