@@ -109,6 +109,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 try {
                                     JSONObject hasil = response.getJSONObject("hasil");
                                     boolean respon = hasil.getBoolean("respon");
+
                                     Log.d("STATUS", "onResponse: " + hasil);
                                     if (respon) {
                                         sharedPreferences.edit().putString("logged","customer").apply();

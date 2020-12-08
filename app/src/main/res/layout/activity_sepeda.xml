@@ -5,10 +5,9 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    tools:context=".ListdataActivity">
 
     <LinearLayout
-        android:layout_marginTop="60dp"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,14 +37,13 @@
 
 
     </LinearLayout>
-
     <ImageView
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:layout_margin="25dp"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/ic_baseline_directions_bike_24"
-        android:id="@+id/tambah_data">
-
-    </ImageView>
+        android:src="@drawable/plus"
+        android:id="@+id/tambah_data"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

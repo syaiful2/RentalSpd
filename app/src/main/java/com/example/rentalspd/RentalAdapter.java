@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -27,6 +28,8 @@ public class RentalAdapter extends RecyclerView.Adapter<RentalAdapter.RentalView
     public RentalViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.list_item,parent,false);
+//        View view1 = layoutInflater.inflate(R.layout.list,parent,false);
+//        return new
         return new RentalViewHolder(view);
     }
 
@@ -39,6 +42,7 @@ public class RentalAdapter extends RecyclerView.Adapter<RentalAdapter.RentalView
         holder.alamat.setText(datalist.get(position).getAlamat());
         holder.noktp.setText(datalist.get(position).getNoktp());
         holder.card.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 Intent in = new Intent(holder.itemView.getContext(), EditCustomer.class);
@@ -49,6 +53,8 @@ public class RentalAdapter extends RecyclerView.Adapter<RentalAdapter.RentalView
                 in.putExtra("alamat", datalist.get(position).getAlamat());
                 in.putExtra("noktp", datalist.get(position).getNoktp());
                 holder.itemView.getContext().startActivity(in);
+
+
             }
         });
 
@@ -65,8 +71,10 @@ public class RentalAdapter extends RecyclerView.Adapter<RentalAdapter.RentalView
         private TextView email,nama,nohp,alamat,noktp;
         CardView card;
 
+
         RentalViewHolder(View itemView) {
             super(itemView);
+
 
             card = (CardView) itemView.findViewById(R.id.cardku);
             email = (TextView) itemView.findViewById(R.id.email);

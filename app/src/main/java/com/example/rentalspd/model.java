@@ -13,6 +13,62 @@ public class model {
     private String nohp;
     private String alamat;
     private String noktp;
+    private String role_user;
+
+    public String getKode() {
+        return kode;
+    }
+
+    public void setKode(String kode) {
+        this.kode = kode;
+    }
+
+    public String getMerk() {
+        return merk;
+    }
+
+    public void setMerk(String merk) {
+        this.merk = merk;
+    }
+
+    public String getWarna() {
+        return warna;
+    }
+
+    public void setWarna(String warna) {
+        this.warna = warna;
+    }
+
+    public String getHargasewa() {
+        return hargasewa;
+    }
+
+    public void setHargasewa(String hargasewa) {
+        this.hargasewa = hargasewa;
+    }
+
+    public String getGambar() {
+        return gambar;
+    }
+
+    public void setGambar(String gambar) {
+        this.gambar = gambar;
+    }
+
+    private String kode;
+    private String merk;
+    private String warna;
+    private String hargasewa;
+    private String gambar;
+    private String jenis;
+
+    public String getJenis() {
+        return jenis;
+    }
+
+    public void setJenis(String jenis) {
+        this.jenis = jenis;
+    }
 
     public model() {
 
@@ -81,8 +137,5 @@ public class model {
     public void setRole_user(String role_user) {
         this.role_user = role_user;
     }
-
-    private String role_user;
-
 }
 

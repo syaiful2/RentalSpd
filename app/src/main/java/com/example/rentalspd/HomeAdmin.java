@@ -30,6 +30,30 @@ public class HomeAdmin extends AppCompatActivity {
             }
         });
 
+        tr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        sp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent h = new Intent(HomeAdmin.this,SepedaActivity.class);
+                startActivity(h);
+                finish();
+            }
+        });
+
+        tr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent t = new Intent(HomeAdmin.this,DataTransaksi.class);
+                startActivity(t);
+                finish();
+            }
+        });
     }
 
     @Override
